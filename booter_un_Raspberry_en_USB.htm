@@ -1,0 +1,23 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Booter un Raspberry en USB</title>
+<link rel="stylesheet" href="res/styles.css"> 
+
+</head>
+<body>
+Sur la carte SD d'origine, <br>
+Ajouter au fichier <red>boot/config.txt</red> la ligne suivante :<br>
+<pre>
+program_usb_boot_mode=1
+</pre>
+Redemarrer avec le Raspberry <i>(toujour avec la carte SD pour le moment)</i>.<br>
+Vérifier que le Raspberry a bien pris en compte la modification :
+<pre>
+$ vcgencmd otp_dump | grep 17
+</pre>
+<red>17:3020000a</red> => la réponse doit être cette valeur, sinon il est inutile de continuer<br>
+<br>
+Ensuite le demarrage sur USB doit être possible !
+</body>
+</html>

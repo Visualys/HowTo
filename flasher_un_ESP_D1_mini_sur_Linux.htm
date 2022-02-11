@@ -1,0 +1,26 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Flasher un ESP D1 mini sur Linux</title>
+<link rel="stylesheet" href="res/styles.css"> 
+
+</head>
+<body>
+<h1>1. Installation de esptools</h1>
+Lancer la ligne de commande : <br>
+<pre>sudo apt install esptool</pre>
+Télécharger la <a href=https://github.com/letscontrolit/ESPEasy/releases target="_blank">dernière release de espeasy-mega</a>.<br>
+ex : ESP_Easy_mega_20210223_normal_ESP8266_4M1M.bin<br>
+
+renommer le fichier téléchargé en <red>esp.bin</red> <i>(pour simplier la ligne de commande)</i><br>
+<h1>2. Flasher l'ESP D1 mini</h1>
+Connecter le D1 mini au port USB.<br>
+Lancer la ligne de commande : <br>
+<pre>esptool --port /dev/ttyUSB0 --baud 115200 write_flash -fm dio -fs 32m 0x00000 esp.bin</pre>
+<h1>3. Réglages de l'ESP D1 mini</h1>
+Au démarrage, le D1 mini est réglé en mode AP <i>(il crée son propre réseau wifi)</i>.<br>
+Il faut se connecter à son wifi (nommé <red>ESP_Easy</red> par défaut) avec le mot de passe : <red>configesp</red><br>
+une fois connecté, il faut utiliser un explorateur web et se rendre à l'adresse 192.168.4.1/setup<br>
+La page affichée permet de pouvoir renseigner le réseau (wifi & mot de passe) auquel le D1 Mini doit se connecter.
+</body>
+</html>

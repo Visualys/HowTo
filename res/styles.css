@@ -1,0 +1,21 @@
+h1 { 
+	color: #256;
+	font-family: arial;
+	font-size: 150%;
+	text-decoration: underline #256;
+	}
+
+pre {
+	color : #55d;
+	font-size: 130%;
+	}
+	
+i {
+	color: #555;
+	font-size: 80%;
+	}
+
+red {
+	color: #f55;
+	font-weight: bold;
+	}

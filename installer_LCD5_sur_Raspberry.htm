@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Installer un LCD5 sur raspberry</title>
+<link rel="stylesheet" href="res/styles.css"> 
+
+</head>
+<body>
+<center>
+<img src=res/LCD5_01.jpg width=45%/><img src=res/LCD5_02.jpg width=45%/>
+</center>
+
+<h1>1. Carte SD</h1>
+Créer une carte SD <i>(en utilisant par exemple Raspberry Imager)</i><br>
+Avant de l'insérer dans le raspberry, modifier le fichier <red>config.txt</red><br>
+ajouter à la fin du fichier :<br>
+<pre>
+max_usb_current=1
+hdmi_group=2
+hdmi_mode=87
+hdmi_cvt 800 480 60 6 0 0 0
+hdmi_drive=1
+</pre>
+Insérer la carte dans le raspberry et connecter le LCD5 au raspberry.<br>
+L'alimentation ne doit pas être connectée au raspberry lui-même mais sur le LCD (qui alimentera le raspberry).
+puis démarrer l'installation<br>
+<h1>2. Activer la fonction tactile</h1>
+Pour utiliser la fonction tactile du LCD,
+dans une console raspberry, lancer les commandes suivantes :<br>
+<pre>
+git clone https://github.com/waveshare/LCD-show.git
+cd LCD-show
+chmod +x LCD5-show
+./LCD5-show
+</pre>
+
+</body>
+</html>

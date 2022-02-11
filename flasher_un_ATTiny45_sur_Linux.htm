@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Flasher un AtTiny45 sur Linux</title>
+<link rel="stylesheet" href="res/styles.css"> 
+
+</head>
+<body>
+<h1>1. Installation de avrdude</h1>
+Lancer la ligne de commande : <br>
+<pre>
+sudo apt install avrdude gcc-avr avr-libc</pre>
+créer un fichier <red>AVRCompile</red> et y ajouter :<br>
+<pre>
+#!/bin/sh
+avr-gcc -g -Os -mmcu=attiny45 -c $1 -o temp.o
+avr-gcc -g -mmcu=attiny45 -o temp.elf temp.o
+avr-objcopy -j .text -j .data -O ihex temp.elf $2
+rm -f temp.o temp.elf
+</pre>
+placer ce fichier dans /usr/local/bin et le rendre executable.<br>
+<h1>2. Installation de Geany</h1>
+Lancer la ligne de commande : <br>
+<pre>sudo apt install geany</pre>
+Démarrer Geany et ouvrir ou créer un fichier avec l'extension [.c]<br>
+Ajouter une commande de construction :<br>
+<li>etiquette => CompileATtiny</li>
+<li>commande => AVRCompile %f %e.hex</li>
+  
+Il suffira de cliquer sur cette commande pour compiler le .c en .hex<br>
+<h1>3. Flasher un ATTiny45</h1>
+En utilisant un <a href=https://www.reichelt.com/fr/fr/programmateur-pour-avr-stk500-atmega-attiny-at90-diamex-usb-isp-p110344.html?&trstct=pos_1&nbc=1 target="_blank">usbISP chez reichelt.fr</a> <i>(en USB avec l'adresse /dev/ttyACM0)</i><br>
+Pour flasher <red>fichier.hex</red> sur un ATTiny45, lancer la ligne de commande : <br>
+<pre>
+avrdude -p ATtiny45 -c stk500 -P /dev/ttyACM0 -U flash:w:<red>fichier.hex</red>:i<br>
+-U lfuse:w:0xE2:m -> pour activer la clock à 8Mhz (pas encore essayé)
+</pre>
+</body>
+</html>
