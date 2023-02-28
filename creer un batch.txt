@@ -1,0 +1,19 @@
+sudo nano fichier
+
+#!/bin/bash
+ligne de commande...
+ligne de commande...
+
+
+
+sauver le fichier
+sudo chmod +x fichier       (pour le rendre executable)
+
+
+
+pour executer fichier :
+
+./fichier
+
+
+si le fichier est dans /usr/local/bin il suffit juste de taper : fichier
