@@ -1,0 +1,12 @@
+Pour lancer un programme au démarrage de la Raspberry Pi, il vous suffit donc de modifier le fichier /etc/rc.local sur la carte SD (depuis la Pi, ou en modifiant le fichier /etc/rc.local dans la partition rootfs de la carte branchée à votre PC).
+
+Pour que le programme soit lancé, il vous suffit de chercher la ligne :
+
+exit 0
+
+dans le fichier et d’ajouter la ligne de commande appelant votre programme avant la ligne exit.
+
+
+votre programme doit rendre la main au script ou la Raspberry Pi ne pourra jamais finir de booter. Si votre programme effectue une boucle infinie, vous devez le lancer en tâche de fond en ajoutant un & après la commande. Dans notre cas cela donnerait :
+
+/usr/bin/python3 /home/pi/example.py &
